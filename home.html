@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avik Poudel | Civil Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+     <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <h1 id="avik_name">Avik Poudel</h1>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Civil Engineer & Structural Designer</h1>
+            <p>Transforming visions into stable, sustainable structures</p>
+            <div style="margin-top: 2rem;">
+                <a href="#contact" class="btn">Hire Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-title">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://civilmdc.com/wp-content/uploads/2023/04/CSI-ETABS-2023-v-21.jpg" alt="Project 1">
+                </div>
+                <div class="project-info">
+                    <h3><center>Multistoried RCC Building</center></h3>
+                    <p><center>Structural design and analysis using ETABS & AutoCAD</center></p>
+                </div>
+            </div>
+            <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://civilmdc.com/wp-content/uploads/2023/04/CSI-ETABS-2023-v-21.jpg" alt="Project 1">
+                </div>
+                <div class="project-info">
+                    <h3><center>Project II</center></h3>
+                    <p><center>Solving Conjugate Beam Problem using C programming Language</center></p>
+                </div>
+            </div>
+            <!-- Add more project cards -->
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="https://civilmdc.com/wp-content/uploads/2023/04/CSI-ETABS-2023-v-21.jpg" alt="Project 1">
+                </div>
+                <div class="project-info">
+                    <h3><center>Minor Project:I </center></h3>
+                    <p><center>Manufacture and Marketing of Bricks</center></p>
+                </div>
+            </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-title">
+            <h2>Technical Expertise</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-item">
+                <i class="fas fa-drafting-compass skill-icon"></i>
+                <h3>Structural Design</h3>
+                <p>ETABS, STAAD.Pro, AutoCAD</p>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-calculator skill-icon"></i>
+                <h3>Analysis</h3>
+                <p>Load Calculations, Cost Optimization</p>
+            </div>
+            <!-- Add more skill items -->
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+        </div>
+        <form class="contact-form">
+            <div class="form-group">
+                <input type="text" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <textarea rows="5" placeholder="Message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Sticky navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>
