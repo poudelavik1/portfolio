@@ -20,8 +20,11 @@
 
         /* Header Styles */
         .hero {
-            background: linear-gradient(rgba(26, 46, 64, 0.9), rgba(26, 46, 64, 0.9)),
-                        url('https://thumbs.dreamstime.com/z/house-under-construction-blueprints-building-project-53360048.jpg?ct=jpeg') center/cover;
+            background: 
+                linear-gradient(rgba(188, 243, 243, 0.3), rgba(109, 96, 96, 0.3)),
+                url('https://thumbs.dreamstime.com/z/house-under-construction-blueprints-building-project-53360048.jpg?ct=jpeg');
+            background-position: center;
+            background-size: cover;
             height: 100vh;
             color: white;
             display: flex;
