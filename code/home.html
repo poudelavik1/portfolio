@@ -16,6 +16,8 @@
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+            <a href="#cv">CV</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -47,7 +49,7 @@
             <div class="projects-grid">
             <div class="project-card">
                 <div class="project-img">
-                    <img src="https://civilmdc.com/wp-content/uploads/2023/04/CSI-ETABS-2023-v-21.jpg" alt="Project 1">
+                    <img src="codeproject2.png" alt="Project 1">
                 </div>
                 <div class="project-info">
                     <h3><center>Project II</center></h3>
@@ -70,23 +72,103 @@
 
     <section id="skills">
         <div class="section-title">
-            <h2>Technical Expertise</h2>
+            <h2>Technical Experience</h2>
         </div>
         <div class="skills-container">
             <div class="skill-item">
-                <i class="fas fa-drafting-compass skill-icon"></i>
+                <img src="structuraldesign.png" width="70px" height="70px" alt="Calculator Icon">
                 <h3>Structural Design</h3>
                 <p>ETABS, STAAD.Pro, AutoCAD</p>
             </div>
             <div class="skill-item">
-                <i class="fas fa-calculator skill-icon"></i>
+                <img src="helmet.png" width="50px" height="50px" alt="Calculator Icon">
+                <h3>Surveying</h3>
+                <p>Fly Levelling, Topo-survey,</p>
+            </div>
+                        <div class="skill-item">
+                <img src="calculator.png" width="50px" height="50px" alt="Calculator Icon">
                 <h3>Analysis</h3>
-                <p>Load Calculations, Cost Optimization</p>
+                <p>Load Calculations, Estimation</p>
             </div>
             <!-- Add more skill items -->
         </div>
     </section>
+    <section id="experience">
+        <div class="section-title">
+            <h2>Work Experience</h2>
+        </div>
+        <p class="experience-container">
+            <div class="experience-item">
+                <img src="structuraldesign.png" width="70px" height="70px" alt="Calculator Icon">
+                <h3>Hints Consult Pvt.ltd Kathmandu, Nepal</h3>
+                <ul style="margin-left: 0; padding-left: 20px; text-align: left;">
+                    <li>Structural design and analysis.</li>
+                    <li>Overseeing project sites.</li>
+                    <li>Conducting site inspections and ensuring compliance with safety regulations.</li>
+                    <li>Preparing and maintaining accurate project documentation (progress report, design modifications and compliance reports).</li>
+                    <li>Engaging with clients to understand their requirements, provide updates and address any concerns and ensuring high level client satisfaction.</li>
+                </ul>
+            </div>
+        </p>
+            <!-- Add more skill items -->
+        </div>
+    </section>
+         <section id="about">
+            <div class="section-title">
+                <h2>About</h2>
+            </div>
+        <div class="timeline">
+            <!-- Early Passion Card -->
+            <div class="timeline-card">
+                <div class="card-header">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Early Passion</h3>
+                </div>
+                <div class="card-content">
+                    <p>From an early age, I was fascinated by architectural marvels and bridge construction, sparking my journey into civil engineering.</p>
+                </div>
+            </div>
 
+            <!-- Education Card -->
+            <div class="timeline-card">
+                <div class="card-header">
+                    <i class="fas fa-university"></i>
+                    <h3>Higher Education</h3>
+                    <div class="date">2018-2023</div>
+                </div>
+                <div class="card-content">
+                    <p>Completed Civil Engineering degree with focus on structural design and construction methodologies.</p>
+                </div>
+            </div>
+
+            <!-- Professional Growth Card -->
+            <div class="timeline-card">
+                <div class="card-header">
+                    <i class="fas fa-tools"></i>
+                    <h3>Professional Growth</h3>
+                </div>
+                <div class="card-content">
+                    <p>Mastering industry software (AutoCAD, Revit, SAP2000) while developing practical project management skills.</p>
+                </div>
+            </div>
+
+            <!-- Future Card -->
+            <div class="timeline-card highlight-card">
+                <div class="card-header">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Future Vision</h3>
+                </div>
+                <div class="card-content">
+                    <p>Ready to collaborate on innovative infrastructure projects and contribute to sustainable urban development.</p>
+                    <div class="cta">
+                        <h4>Your Next Hire</h4>
+                        <button class="hire-btn">Contact Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
     <section id="contact">
         <div class="section-title">
             <h2>Get In Touch</h2>
@@ -122,5 +204,97 @@
             navbar.classList.toggle('sticky', window.scrollY > 0);
         });
     </script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .social-links {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 10px;
+            border-radius: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .facebook { background: #1877f2; }
+        .whatsapp { background: #25d366; }
+        .linkedin { background: #0a66c2; }
+
+        /* Tooltip on hover */
+        .social-links a::after {
+            content: attr(aria-label);
+            position: absolute;
+            right: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .social-links a:hover::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .social-links {
+                right: 10px;
+                bottom: 10px;
+                padding: 10px 8px;
+                gap: 10px;
+            }
+            
+            .social-links a {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .social-links a::after {
+                right: 45px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="social-links">
+        <a href="https://www.facebook.com/avik.poudel" target="_blank" class="facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://wa.me/+9779840174027" target="_blank" class="whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/avik-poudel-980027285/" target="_blank" class="linkedin" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+    </div>
 </body>
 </html>
