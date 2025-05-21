@@ -1,10 +1,9 @@
-<style>
-        :root {
-            --primary: #2A5C82;
-            --secondary: #3AB795;
-            --dark: #1A2E40;
-            --light: #F5F9FC;
-        }
+:root {
+    --primary: #2A5C82;
+    --secondary: #3AB795;
+    --dark: #1A2E40;
+    --light: #F5F9FC;
+}
 
         * {
             margin: 0;
@@ -187,8 +186,7 @@
             .nav-links {
                 display: none;
             }
-        }
-        #avik_name{ 
-            color:rgb(61, 158, 17);
-        }
-    </style>
+    }
+    #avik_name { 
+        color: rgb(61, 158, 17);
+    }
