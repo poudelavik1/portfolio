@@ -331,6 +331,11 @@
             background: var(--secondary);
         }
 
+
+        .btn:hover {
+            background: var(--secondary);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
@@ -344,3 +349,4 @@
     #avik_name { 
         color: rgb(61, 158, 17);
     }
+    

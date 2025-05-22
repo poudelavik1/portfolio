@@ -1,0 +1,121 @@
+  :root {
+    --primary: #2A5C82;
+    --secondary: #425055;
+    --dark: #1A2E40;
+    --light: #F5F9FC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: white;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.photo-section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--secondary);
+}
+
+.main-content {
+    padding-right: 2rem;
+}
+
+.side-content {
+    border-left: 3px solid var(--secondary);
+    padding-left: 2rem;
+}
+
+.section-title {
+    color: var(--secondary);
+    border-bottom: 2px solid;
+    padding-bottom: 0.5rem;
+    margin: 1.5rem 0;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.education-item, .experience-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 1.5rem;
+}
+
+.date {
+    color: #7f8c8d;
+    font-weight: 500;
+}
+
+.contact-info {
+    margin: 1rem 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+.contact-item i {
+    color: var(--secondary);
+    width: 25px;
+}
+
+.skill-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.skill-item {
+    background: var(--light);
+    padding: 0.5rem 1rem;
+    margin: 0.3rem 0;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.skill-item:hover {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .side-content {
+        border-left: none;
+        padding-left: 0;
+    }
+    
+    .education-item, .experience-item {
+        grid-template-columns: 1fr;
+    }
+}
