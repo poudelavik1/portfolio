@@ -172,49 +172,50 @@
             color: var(--primary);
             margin-bottom: 1rem;
         }
+        
 
         /* experience */
-        .experience-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-            /* gap: 2rem; */
-            padding: 1rem;
-        }
 
         .experience-item {
-            padding: 2rem;
-            display: flex;
-            /* align-items:center ; */
-            /* align-content: center; */
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            /* text-align: center; */
-        }
-        .company-title{
-            width: 500px;
-            height: 50px;
-            margin-bottom: 00px;
-            margin-left: 150px;
-        }
-        .responsibility-list {
-            display: flex;
-            height: 300px;
-            width: 700px;
-            margin-top: 100px;
-            }
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        min-height: 400px;
+    }
+
+    .company-title {
+        width: 500px;
+        text-align: center;
+        margin-bottom: 2rem;
+        /* Remove margin-left: 150px; */
+    }
+
+    .responsibility-list {
+        width: 700px;
+        max-width: 100%;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
         .responsibility-list ul{
             list-style-type: disc;
+            margin-top: 20px;
         }
         .responsibility-list li{
             align-items: left;
-        }
-
-        .responsibility-list li {
             margin-bottom: 10px;
-            }
+        }
+        
+        .responsibility-list h2{
+            margin-left: 100px;
+            margin-bottom: 20px;
+        }
 
         .experience-icon {
             font-size: 2.5rem;
