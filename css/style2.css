@@ -56,11 +56,11 @@ body {
     border-bottom: 2px solid;
     padding-bottom: 0.5rem;
     margin: 1.5rem 0;
-    font-size: 1.3rem;
-    text-transform: uppercase;
+    font-size: 1rem;
+    /* text-transform: uppercase; */
 }
 
-.education-item, .experience-item {
+.education-item, .cvexperience-item {
     display: grid;
     grid-template-columns: 100px 1fr;
     margin-bottom: 1.5rem;
@@ -118,4 +118,4 @@ body {
     .education-item, .experience-item {
         grid-template-columns: 1fr;
     }
-}
+} 
