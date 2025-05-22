@@ -5,14 +5,11 @@
     <title>Avik Poudel | Civil Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/style2.css">
     
 </head>
 <body>
-    <nav id="navbar">
-        
-    </nav>
-
     <nav class="navbar">
         <h1 id="avik_name">Avik Poudel</h1>
         <div class="nav-links">
@@ -25,101 +22,6 @@
             <a href="#contact">Contact</a>
         </div>
     </nav>
-    <style>
-        /* Scroll to top button styles */
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .scroll-top-btn.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top-btn:hover {
-            background: #555;
-            transform: translateY(-2px);
-        }
-
-        /* Navigation bar styles */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        /* Just for demonstration */
-        .content {
-            height: 2000px;
-            padding: 100px 20px;
-        }
-
-        @media (max-width: 768px) {
-            .scroll-top-btn {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Bar -->
-    
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top-btn" aria-label="Scroll to top">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 19V5M5 12l7-7 7 7"/>
-        </svg>
-    </button>
-
-    <script>
-        // Show/hide scroll button
-        const scrollBtn = document.querySelector('.scroll-top-btn');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) {
-                scrollBtn.classList.add('show');
-            } else {
-                scrollBtn.classList.remove('show');
-            }
-        });
-
-        // Scroll to nav function
-        scrollBtn.addEventListener('click', () => {
-            // Option 1: Scroll to top of page
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            // Option 2: Scroll to specific navigation element
-            // document.getElementById('navbar').scrollIntoView({
-            //     behavior: 'smooth'
-            // });
-        });
-    </script>
 
     <section class="hero" id="home">
         <div class="hero-content">
@@ -138,7 +40,7 @@
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-img">
-                    <img src="etabs.png" alt="Project 1">
+                    <img src="resources/etabs.png" alt="Project 1">
                 </div>
                 <div class="project-info">
                     <h3><center>Multistoried RCC Building</center></h3>
@@ -148,7 +50,7 @@
             <div class="projects-grid">
             <div class="project-card">
                 <div class="project-img">
-                    <img src="codeproject2.png" alt="Project 1">
+                    <img src="resources/codeproject2.png" alt="Project 1">
                 </div>
                 <div class="project-info">
                     <h3><center>Project II</center></h3>
@@ -160,7 +62,7 @@
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-img">
-                    <img src="brickfactory.jpg" alt="Project 1">
+                    <img src="resources/brickfactory.jpg" alt="Project 1">
                 </div>
                 <div class="project-info">
                     <h3><center>Minor Project:I </center></h3>
@@ -175,17 +77,17 @@
         </div>
         <div class="skills-container">
             <div class="skill-item">
-                <img src="structuraldesign.png" width="70px" height="70px" alt="Calculator Icon">
+                <img src="resources/structuraldesign.png" width="70px" height="70px" alt="Calculator Icon">
                 <h3>Structural Design</h3>
                 <p>ETABS, STAAD.Pro, AutoCAD</p>
             </div>
             <div class="skill-item">
-                <img src="helmet.png" width="50px" height="50px" alt="Calculator Icon">
+                <img src="resources/helmet.png" width="50px" height="50px" alt="Calculator Icon">
                 <h3>Surveying</h3>
                 <p>Fly Levelling, Topo-survey,</p>
             </div>
                         <div class="skill-item">
-                <img src="calculator.png" width="50px" height="50px" alt="Calculator Icon">
+                <img src="resources/calculator.png" width="50px" height="50px" alt="Calculator Icon">
                 <h3>Analysis</h3>
                 <p>Load Calculations, Estimation</p>
             </div>
@@ -197,6 +99,7 @@
             <h2>Work Experience</h2>
         </div>
         <div class="experience-container">
+<<<<<<< HEAD:code/home.html
             <div class="experience-item">
                 <ul style="margin-left: 0; padding-left: 20px; text-align: left;">
                     <center><h3>Hints Consult Pvt.ltd Kathmandu, Nepal</h3></center>
@@ -209,8 +112,39 @@
             </div>
         </div>
             <!-- Add more skill items -->
+=======
+        <div class="experience-item">
+        <div class="company-title">
+            <h2 >Hints Consult Pvt.Ltd. Kathmandu, Nepal</h2>
+>>>>>>> d5ca77b162960ab1b57868be2828dec7a15bf66a:home.html
         </div>
-    </section>
+        <div class="responsibility-list">
+        <ul>
+            <li>Structural design and analysis.</li>
+            <li>Overseeing project sites.</li>
+            <li>Conducting site inspections and ensuring compliance with safety regulations.</li>
+            <li>Preparing and maintaining accurate project documentation (progress report, design modifications, and compliance reports).</li>
+            <li>Engaging with clients to understand their requirements, provide updates, address concerns, and ensure high-level client satisfaction.</li>
+        </ul>
+        </div>
+        <div class="company-title">
+            <h2 >Hints Consult Pvt.Ltd. Kathmandu, Nepal</h2>
+        </div>
+        <div class="responsibility-list">
+        <ul>
+            <li>Structural design and analysis.</li>
+            <li>Overseeing project sites.</li>
+            <li>Conducting site inspections and ensuring compliance with safety regulations.</li>
+            <li>Preparing and maintaining accurate project documentation (progress report, design modifications, and compliance reports).</li>
+            <li>Engaging with clients to understand their requirements, provide updates, address concerns, and ensure high-level client satisfaction.</li>
+        </ul>
+        </div>
+        
+    </div>
+
+    <!-- Add more experience-item divs here for additional jobs -->
+  </div>
+</section>
          <section id="about">
             <div class="section-title">
                 <h2>About</h2>
@@ -219,7 +153,7 @@
             <!-- Early Passion Card -->
             <div class="timeline-card">
                 <div class="card-header">
-                    <img src="leaves.png" width="25px" height="25px" alt="structuraldesign">
+                    <img src="resources/leaves.png" width="25px" height="25px" alt="structuraldesign">
                     <h3>Early Passion</h3>
                 </div>
                 <div class="card-content">
@@ -229,7 +163,7 @@
             <!-- Education Card -->
             <div class="timeline-card">
                 <div class="card-header">
-                    <img src="education.png" width="25px" height="25px" alt="education">
+                    <img src="resources/education.png" width="25px" height="25px" alt="education">
                     <h3>Higher Education</h3>
                     <div class="date">2018-2023</div>
                 </div>
@@ -241,7 +175,7 @@
             <!-- Professional Growth Card -->
             <div class="timeline-card">
                 <div class="card-header">
-                    <img src="personal-development.png" width="30px" height="30px" alt="personal-development">
+                    <img src="resources/personal-development.png" width="30px" height="30px" alt="personal-development">
                     <h3>Professional Growth</h3>
                 </div>
                 <div class="card-content">
@@ -252,7 +186,7 @@
             <!-- Future Card -->
             <div class="timeline-card highlight-card">
                 <div class="card-header">
-                    <img src="rocket.png" width="30px" height="30px" alt="rocket">
+                    <img src="resources/rocket.png" width="30px" height="30px" alt="rocket">
                     <h3>Future Vision</h3>
                 </div>
                 <div class="card-content">
@@ -287,7 +221,7 @@
         <div class="main-content">
             <!-- Photo Section -->
             <div class="photo-section">
-                <img src="mypicture.JPG" alt="Avik Poudel" class="profile-photo">
+                <img src="resources/mypicture.JPG" alt="Avik Poudel" class="profile-photo">
                 <h1>Avik Poudel</h1>
                 <p>Civil Engineer</p>
             </div>
@@ -338,15 +272,15 @@
                 <h2 class="section-title">CONTACT</h2>
                 <div class="contact-info">
                     <div class="contact-item">
-                        <img src="email.png" alt="email" width="20px" height="20px">
+                        <img src="resources/email.png" alt="email" width="20px" height="20px">
                         avikpoudel4@gmail.com
                     </div>
                     <div class="contact-item">
-                        <img src="phone.png" alt="phone" width="20px" height="20px">
+                        <img src="resources/phone.png" alt="phone" width="20px" height="20px">
                         (+977) 9840174027
                     </div>
                     <div class="contact-item">
-                        <img src="location.png" alt="location" width="20px" height="20px">
+                        <img src="resources/location.png" alt="location" width="20px" height="20px">
                         Kathmandu, Nepal
                     </div>
                 </div>
@@ -384,7 +318,7 @@
                 </ul>
             </div>
         </p>
-       <center><a href="cv.pdf" class="btn" download>Download CV</a></center>
+       <center><a href="resources/cv.pdf" class="btn" download>Download CV</a></center>
     
     <section id="contact">
         <div class="section-title">
@@ -425,7 +359,7 @@
     <style>
         .social-links {
             position: fixed;
-            left: 20px;
+            right: 20px;
             bottom: 20px;
             display: flex;
             flex-direction: column;
@@ -464,7 +398,7 @@
         .social-links a::after {
             content: attr(aria-label);
             position: absolute;
-            left: 60px;
+            right: 60px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 5px 10px;
@@ -482,7 +416,7 @@
 
         @media (max-width: 768px) {
             .social-links {
-                left: 10px;
+                right: 10px;
                 bottom: 10px;
                 padding: 10px 8px;
                 gap: 10px;
@@ -495,7 +429,7 @@
             }
 
             .social-links a::after {
-                left: 45px;
+                right: 45px;
                 font-size: 12px;
             }
         }
@@ -513,6 +447,5 @@
             <i class="fab fa-linkedin-in"></i>
         </a>
     </div>
-    
 </body>
 </html>

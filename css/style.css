@@ -17,12 +17,17 @@
             color: var(--dark);
             line-height: 1.6;
         }
+        
+        a{
+            text-decoration: none;
+        }
+
 
         /* Header Styles */
         .hero {
             background: 
                 linear-gradient(rgba(188, 243, 243, 0.3), rgba(109, 96, 96, 0.3)),
-                url('474.JPG');
+                url('../resources/474.JPG');
             background-position: center;
             background-size: cover;
             height: 100vh;
@@ -168,7 +173,57 @@
             margin-bottom: 1rem;
         }
 
-        
+        /* experience */
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+            /* gap: 2rem; */
+            padding: 1rem;
+        }
+
+        .experience-item {
+            padding: 2rem;
+            display: flex;
+            /* align-items:center ; */
+            /* align-content: center; */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            /* text-align: center; */
+        }
+        .company-title{
+            width: 500px;
+            height: 50px;
+            margin-bottom: 00px;
+            margin-left: 150px;
+        }
+        .responsibility-list {
+            display: flex;
+            height: 300px;
+            width: 700px;
+            margin-top: 100px;
+            }
+
+        .responsibility-list ul{
+            list-style-type: disc;
+        }
+        .responsibility-list li{
+            align-items: left;
+        }
+
+        .responsibility-list li {
+            margin-bottom: 10px;
+            }
+
+        .experience-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .experience-list{
+            margin-left: 30px;
+        }
         /* Base Styles */
         * {
             margin: 0;
