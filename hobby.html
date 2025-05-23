@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Background with gradient overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                linear-gradient(rgba(25, 25, 25, 0.7), 
+                rgba(10, 10, 10, 0.7)),
+                url('Photos/Background.jpg') center/cover fixed;
+        }
+
+        /* Navigation Bar */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+
+        .nav h1 {
+            color: white;
+            font-family: 'Brush Script MT', cursive;
+            font-weight: bold;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 100px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photo-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+        }
+
+        .photo-info {
+            padding: 15px;
+        }
+
+        .photo-info h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .photo-info p {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            margin: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                padding-top: 80px;
+            }
+            
+            .nav h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <h1>Photos</h1>
+    </nav>
+
+    <div class="gallery" id="gallery"></div>
+
+    <div class="modal" id="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        // Add your photos here
+        const photoData = [
+            {
+                url: "Photos/Sunset.jpg",
+                title: "Mountain View",
+                description: "Sunset in the mountains"
+            },
+            {
+                url: "Photos/Mountains.jpg",
+                title: "Mountains",
+                description: "Into the Mountains"
+            },
+            {
+                url: "Photos/Sunrise.jpg",
+                title: "Sunrise",
+                description: "Sunrise, Khumaltar, Lalitpur"
+            },
+            // Add more photos as needed
+        ];
+
+        function createGallery() {
+            const gallery = document.getElementById('gallery');
+            
+            photoData.forEach(photo => {
+                const box = document.createElement('div');
+                box.className = 'photo-box';
+                box.innerHTML = `
+                    <img src="${photo.url}" alt="${photo.title}">
+                    <div class="photo-info">
+                        <h3>${photo.title}</h3>
+                        <p>${photo.description}</p>
+                    </div>
+                `;
+                
+                box.querySelector('img').addEventListener('click', () => 
+                    openModal(photo.url));
+                gallery.appendChild(box);
+            });
+        }
+
+        function openModal(imgSrc) {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('modal-img').src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', createGallery);
+    </script>
+</body>
+</html>
