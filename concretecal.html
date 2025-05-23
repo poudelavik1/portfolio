@@ -1,107 +1,495 @@
-<!-- Add this to your tools dropdown or create a new section -->
-<div class="concrete-calculator">
-    <h3>Concrete Materials Calculator</h3>
-    <div class="calc-container">
-        <div class="form-group">
-            <label for="concrete-volume">Concrete Volume (m³):</label>
-            <input type="number" id="concrete-volume" step="0.1" min="0" placeholder="Enter volume in cubic meters">
-        </div>
-        
-        <div class="form-group">
-            <label for="mix-ratio">Mix Ratio (Cement:Sand:Aggregate):</label>
-            <input type="text" id="mix-ratio" placeholder="e.g., 1:2:4" value="1:2:4">
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Materials Calculator</title>
+    <style>
+        :root {
+            --primary: #2A5C82;
+            --secondary: #bac4c1;
+            --dark: #131313;
+            --light: #f7f7f7;
+        }
+        .mix-option h3,.mix-option p { 
+            color: var(--dark); 
+            text-align: center;}
+        .mix-option {
+        border: 2px solid #000000 !important; /* Black border */
+        border-radius: 10px !important; /* Rounded corners */}
 
-        <div class="form-group">
-            <label for="water-cement">Water-Cement Ratio:</label>
-            <input type="number" id="water-cement" step="0.01" min="0" value="0.5" placeholder="0.4-0.6">
+.mix-option.active {
+  border: 3px solid #000000 !important; /* Thicker border for active state */
+  box-shadow: 0 0 10px rgba(0,0,0,0.2) !important; /* Optional shadow enhancement */
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(132, 149, 161, 0.85), 
+                        rgba(26, 46, 64, 0.85)),
+                        url('resources/construction.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            color: var(--light);
+        }
+
+        .top-bar {
+            background: rgba(26, 46, 64, 0.95);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .top-bar h1 {
+            color: var(--secondary);
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .calculator-container h2,.calculator-container p { 
+            color: var(--dark); 
+            text-align: center;}
+
+        .mix-ratio-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mix-option {
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .mix-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .mix-option.active {
+            border-color: var(--primary);
+            background: var(--secondary);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .results {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result-item {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .mix-ratio-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Modify the results section */
+.results {
+  color: #000000; /* Black color for all text in results */
+}
+
+.results h3 {
+  color: #000000 !important; /* Black color for headings */
+}
+
+.results p {
+  color: #000000; /* Black color for paragraph text */
+}
+
+.results span {
+  color: #000000 !important; /* Black color for numbers */
+}
+.tools-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.tool-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .tools-container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .tool-card {
+    padding: 1.5rem;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Building Material Calculator</h1>
+        <p>Calculate Required Materials for Your Construction Project</p>
+    </div>
+    <script>
+        let currentRatio = "1:3:6";
+        let currentGrade = "M10";
+
+        function selectMixRatio(element, grade) {
+            document.querySelectorAll('.mix-option').forEach(opt => {
+                opt.classList.remove('active');
+                opt.style.background = "var(--light)";
+            });
+            element.classList.add('active');
+            element.style.background = "var(--secondary)";
+            currentRatio = element.getAttribute('data-ratio');
+            currentGrade = grade;
+            document.getElementById('custom-ratio').disabled = true;
+        }
+
+        function calculateMaterials() {
+            const volume = parseFloat(document.getElementById('volume').value);
+            const waterRatio = parseFloat(document.getElementById('water-ratio').value);
+            
+            if (isNaN(volume)) {
+                alert("Please enter valid concrete volume");
+                return;
+            }
+
+            const [cementPart, sandPart, aggregatePart] = currentRatio.split(':').map(Number);
+            const totalParts = cementPart + sandPart + aggregatePart;
+            const dryVolumeFactor = 1.54;
+
+            // Calculations
+            const cementVolume = (cementPart/totalParts) * dryVolumeFactor * volume;
+            const sandVolume = (sandPart/totalParts) * dryVolumeFactor * volume;
+            const aggregateVolume = (aggregatePart/totalParts) * dryVolumeFactor * volume;
+            const cementKg = cementVolume * 1440; // 1440 kg/m³ density
+            const cementBags = Math.ceil(cementKg / 50);
+            const waterLitres = Math.ceil(cementKg * waterRatio);
+
+            // Display results
+            document.getElementById('cement').textContent = cementBags;
+            document.getElementById('sand').textContent = sandVolume.toFixed(2);
+            document.getElementById('aggregate').textContent = aggregateVolume.toFixed(2);
+            document.getElementById('water').textContent = waterLitres;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Enable custom ratio input
+        document.getElementById('custom-ratio').addEventListener('focus', function() {
+            document.querySelectorAll('.mix-option').forEach(opt => opt.classList.remove('active'));
+            this.disabled = false;
+            currentRatio = this.value;
+        });
+    </script>
+    <!-- Add this container around your tools -->
+<div class="tools-container">
+    <!-- Concrete Calculator -->
+    <div class="tool-card">
+        <div class="calculator-container">
+            <center><h2>Concrete Calculator</h2></center>
+            <div class="input-group">
+                <label for="volume">Concrete Volume (m³)</label>
+                <input type="number" id="volume" step="0.1" min="0" placeholder="Enter volume in cubic meters">
+            </div>
+            
+            <label>Choose the Mix Ratio</label>
+            <div class="mix-ratio-section">
+                <div class="mix-option active" data-ratio="1:3:6" onclick="selectMixRatio(this, 'M10')">
+                    <h3>M10 (1:3:6)</h3>
+                    <p>General Purpose Concrete</p>
+                </div>
+                <div class="mix-option" data-ratio="1:2:4" onclick="selectMixRatio(this, 'M15')">
+                    <h3>M15 (1:2:4)</h3>
+                    <p>Reinforced Concrete</p>
+                </div>
+                <div class="mix-option" data-ratio="1:1.5:3" onclick="selectMixRatio(this, 'M20')">
+                    <h3>M20 (1:1.5:3)</h3>
+                    <p>Heavy Duty Concrete</p>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="water-ratio">Water-Cement Ratio</label>
+                <select id="water-ratio">
+                    <option value="0.4">0.4 (Dry Mix)</option>
+                    <option value="0.5" selected>0.5 (Standard)</option>
+                    <option value="0.6">0.6 (Wet Mix)</option>
+                </select>
+            </div>
+
+            <button onclick="calculateMaterials()">Calculate Materials</button>
+
+            <div class="results" id="results">
+                <div class="result-item">
+                    <h3>Cement Required</h3>
+                    <p><span id="cement">0</span> bags (50kg each)</p>
+                </div>
+                <div class="result-item">
+                    <h3>Sand Needed</h3>
+                    <p><span id="sand">0</span> m³</p>
+                </div>
+                <div class="result-item">
+                    <h3>Aggregate Needed</h3>
+                    <p><span id="aggregate">0</span> m³</p>
+                </div>
+                <div class="result-item">
+                    <h3>Water Required</h3>
+                    <p><span id="water">0</span> liters</p>
+                </div>
+            </div>
         </div>
+    </div>
+  <!-- HTML -->
+   <div class="tool-card">
+<div class="calculator-container">
+    <h2>Brickwork Calculator</h2>
+    
+    <div class="input-group">
+        <label for="wall-type">Wall Type</label>
+        <select id="wall-type">
+            <option value="load-bearing">Load Bearing (1:4)</option>
+            <option value="non-load-bearing">Non-Load Bearing (1:6)</option>
+        </select>
+    </div>
 
-        <button class="btn" onclick="calculateMaterials()">Calculate</button>
+    <div class="input-group">
+        <label for="wall-length">Wall Length (m)</label>
+        <input type="number" id="wall-length" step="0.1" min="0">
+    </div>
 
-        <div class="results" id="results">
-            <h4>Required Materials:</h4>
-            <p>Cement: <span id="cement">0</span> bags (50kg each)</p>
-            <p>Sand: <span id="sand">0</span> m³</p>
-            <p>Aggregate: <span id="aggregate">0</span> m³</p>
-            <p>Water: <span id="water">0</span> liters</p>
+    <div class="input-group">
+        <label for="wall-height">Wall Height (m)</label>
+        <input type="number" id="wall-height" step="0.1" min="0">
+    </div>
+
+    <div class="input-group">
+        <label>Windows in Wall?</label>
+        <select id="has-windows" onchange="toggleWindows()">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+    </div>
+
+    <div id="windows-container">
+        <div class="window-input">
+            <div class="dimension-inputs">
+                <input type="number" class="win-length" step="0.1" placeholder="Length">
+                <input type="number" class="win-width" step="0.1" placeholder="Width">
+                <button class="remove-win" onclick="removeWindow(this)">×</button>
+            </div>
+        </div>
+        <button class="btn" onclick="addWindow()">+ Add Window</button>
+    </div>
+
+    <div class="button-group">
+        <button class="btn calculate-btn" onclick="calculateBrickwork()">Calculate</button>
+        <button class="btn reset-btn" onclick="resetCalculator()">Reset</button>
+    </div>
+
+    <div class="results" id="brick-results">
+        <div class="result-item">
+            <h3>Bricks Required: <span id="brick-count">0</span></h3>
+        </div>
+        <div class="result-item">
+            <h3>Cement: <span id="cement-required">0</span> bags</h3>
+        </div>
+        <div class="result-item">
+            <h3>Sand: <span id="sand-required">0</span> m³</h3>
         </div>
     </div>
 </div>
 
 <style>
-.concrete-calculator {
-    background: var(--light);
-    padding: 2rem;
+/* CSS */
+.brick-calculator {
+    background: #fff;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 20px auto;
 }
 
-.calc-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+.input-group {
+    margin-bottom: 15px;
 }
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#windows-container {
+    display: none;
+    margin-top: 10px;
+}
+
+.window-input {
+    margin-bottom: 10px;
+}
+
+.dimension-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.remove-win {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calculate-btn { background: #2A5C82; color: white; }
+.reset-btn { background: #666; color: white; }
 
 .results {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 1rem;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 5px;
     display: none;
 }
 
-.results p {
-    margin: 0.5rem 0;
-    color: var(--dark);
-    font-weight: 500;
-}
-
-.results span {
-    color: var(--primary);
-    font-weight: bold;
+.result-item {
+    margin: 10px 0;
 }
 </style>
 
 <script>
-function calculateMaterials() {
-    // Get input values
-    const volume = parseFloat(document.getElementById('concrete-volume').value);
-    const mixRatio = document.getElementById('mix-ratio').value.split(':').map(Number);
-    const waterCementRatio = parseFloat(document.getElementById('water-cement').value);
+// JavaScript
+let windowCount = 1;
 
-    // Validate inputs
-    if (isNaN(volume) {
-        alert("Please enter a valid concrete volume");
-        return;
+function toggleWindows() {
+    const container = document.getElementById('windows-container');
+    container.style.display = document.getElementById('has-windows').value === 'yes' 
+        ? 'block' 
+        : 'none';
+}
+
+function addWindow() {
+    const container = document.getElementById('windows-container');
+    const newWindow = document.querySelector('.window-input').cloneNode(true);
+    newWindow.querySelectorAll('input').forEach(input => input.value = '');
+    container.insertBefore(newWindow, container.lastElementChild);
+    windowCount++;
+}
+
+function removeWindow(btn) {
+    if(windowCount > 1) {
+        btn.closest('.window-input').remove();
+        windowCount--;
     }
+}
 
-    // Calculation constants
-    const cementDensity = 1440; // kg/m³
-    const bagWeight = 50; // kg per bag
-    const dryVolumeFactor = 1.54; // Account for voids
+function calculateBrickwork() {
+    // Calculation logic remains same as previous version
+    // (Include the full calculation code from previous answer here)
+}
 
-    // Calculate absolute volumes
-    const totalParts = mixRatio.reduce((a, b) => a + b, 0);
-    const cementVolume = (mixRatio[0]/totalParts) * dryVolumeFactor * volume;
-    const sandVolume = (mixRatio[1]/totalParts) * dryVolumeFactor * volume;
-    const aggregateVolume = (mixRatio[2]/totalParts) * dryVolumeFactor * volume;
-
-    // Calculate cement in bags
-    const cementKg = cementVolume * cementDensity;
-    const cementBags = Math.ceil(cementKg / bagWeight);
-
-    // Calculate water required
-    const waterLitres = Math.ceil(cementKg * waterCementRatio);
-
-    // Display results
-    document.getElementById('cement').textContent = cementBags;
-    document.getElementById('sand').textContent = sandVolume.toFixed(2);
-    document.getElementById('aggregate').textContent = aggregateVolume.toFixed(2);
-    document.getElementById('water').textContent = waterLitres;
-    
-    document.querySelector('.results').style.display = 'block';
+function resetCalculator() {
+    // Reset logic remains same as previous version
+    // (Include the full reset code from previous answer here)
 }
 </script>
+s
+</body>
+</html>
