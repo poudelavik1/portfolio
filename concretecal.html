@@ -1,0 +1,107 @@
+<!-- Add this to your tools dropdown or create a new section -->
+<div class="concrete-calculator">
+    <h3>Concrete Materials Calculator</h3>
+    <div class="calc-container">
+        <div class="form-group">
+            <label for="concrete-volume">Concrete Volume (m³):</label>
+            <input type="number" id="concrete-volume" step="0.1" min="0" placeholder="Enter volume in cubic meters">
+        </div>
+        
+        <div class="form-group">
+            <label for="mix-ratio">Mix Ratio (Cement:Sand:Aggregate):</label>
+            <input type="text" id="mix-ratio" placeholder="e.g., 1:2:4" value="1:2:4">
+        </div>
+
+        <div class="form-group">
+            <label for="water-cement">Water-Cement Ratio:</label>
+            <input type="number" id="water-cement" step="0.01" min="0" value="0.5" placeholder="0.4-0.6">
+        </div>
+
+        <button class="btn" onclick="calculateMaterials()">Calculate</button>
+
+        <div class="results" id="results">
+            <h4>Required Materials:</h4>
+            <p>Cement: <span id="cement">0</span> bags (50kg each)</p>
+            <p>Sand: <span id="sand">0</span> m³</p>
+            <p>Aggregate: <span id="aggregate">0</span> m³</p>
+            <p>Water: <span id="water">0</span> liters</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.concrete-calculator {
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.results {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: none;
+}
+
+.results p {
+    margin: 0.5rem 0;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.results span {
+    color: var(--primary);
+    font-weight: bold;
+}
+</style>
+
+<script>
+function calculateMaterials() {
+    // Get input values
+    const volume = parseFloat(document.getElementById('concrete-volume').value);
+    const mixRatio = document.getElementById('mix-ratio').value.split(':').map(Number);
+    const waterCementRatio = parseFloat(document.getElementById('water-cement').value);
+
+    // Validate inputs
+    if (isNaN(volume) {
+        alert("Please enter a valid concrete volume");
+        return;
+    }
+
+    // Calculation constants
+    const cementDensity = 1440; // kg/m³
+    const bagWeight = 50; // kg per bag
+    const dryVolumeFactor = 1.54; // Account for voids
+
+    // Calculate absolute volumes
+    const totalParts = mixRatio.reduce((a, b) => a + b, 0);
+    const cementVolume = (mixRatio[0]/totalParts) * dryVolumeFactor * volume;
+    const sandVolume = (mixRatio[1]/totalParts) * dryVolumeFactor * volume;
+    const aggregateVolume = (mixRatio[2]/totalParts) * dryVolumeFactor * volume;
+
+    // Calculate cement in bags
+    const cementKg = cementVolume * cementDensity;
+    const cementBags = Math.ceil(cementKg / bagWeight);
+
+    // Calculate water required
+    const waterLitres = Math.ceil(cementKg * waterCementRatio);
+
+    // Display results
+    document.getElementById('cement').textContent = cementBags;
+    document.getElementById('sand').textContent = sandVolume.toFixed(2);
+    document.getElementById('aggregate').textContent = aggregateVolume.toFixed(2);
+    document.getElementById('water').textContent = waterLitres;
+    
+    document.querySelector('.results').style.display = 'block';
+}
+</script>
