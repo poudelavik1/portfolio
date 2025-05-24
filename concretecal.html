@@ -372,6 +372,7 @@
         </div>
     </div>
 </div>
+</div>
 
 <style>
 /* CSS */
@@ -461,7 +462,7 @@ let windowCount = 1;
 function toggleWindows() {
     const container = document.getElementById('windows-container');
     container.style.display = document.getElementById('has-windows').value === 'yes' 
-        ? 'block' 
+        ? 'flex'  // Changed to flex for better layout
         : 'none';
 }
 
@@ -481,15 +482,90 @@ function removeWindow(btn) {
 }
 
 function calculateBrickwork() {
-    // Calculation logic remains same as previous version
-    // (Include the full calculation code from previous answer here)
+    // Brick specifications
+    const brickSize = {
+        length: 0.24,   // meters
+        width: 0.115,   // meters
+        height: 0.057   // meters
+    };
+    const mortarThickness = 0.01; // 10mm
+    const dryMixPercentage = 0.33; // 33%
+
+    // Get wall type and mortar ratio
+    const wallType = document.getElementById('wall-type').value;
+    const [cementRatio, sandRatio] = wallType === 'load-bearing' ? [1, 4] : [1, 6];
+
+    // Get wall dimensions
+    const wallLength = parseFloat(document.getElementById('wall-length').value) || 0;
+    const wallHeight = parseFloat(document.getElementById('wall-height').value) || 0;
+
+    // Calculate total wall area
+    const totalWallArea = wallLength * wallHeight;
+
+    // Calculate window areas
+    let windowArea = 0;
+    if(document.getElementById('has-windows').value === 'yes') {
+        const windows = document.querySelectorAll('.window-input');
+        windows.forEach(window => {
+            const length = parseFloat(window.querySelector('.win-length').value) || 0;
+            const width = parseFloat(window.querySelector('.win-width').value) || 0;
+            windowArea += length * width;
+        });
+    }
+
+    // Calculate effective brick dimensions with mortar
+    const effectiveLength = brickSize.length + mortarThickness/2;
+    const effectiveHeight = brickSize.height + mortarThickness/2;
+
+    // Calculate bricks per square meter
+    const bricksPerSqm = 1 / (effectiveLength * effectiveHeight);
+
+    // Calculate total bricks
+    const netWallArea = Math.max(0, totalWallArea - windowArea);
+    const totalBricksww = Math.ceil(netWallArea * bricksPerSqm);
+    const totalBricks = Math.ceil(totalBricksww*1.05); // Adding 5% extra for wastage
+
+    // Calculate mortar components
+    const totalMortarVolume = netWallArea - totalBricks * (brickSize.length * brickSize.width * brickSize.height);
+    const dryMortarVolume = totalMortarVolume *(1 + dryMixPercentage);
+    const cementVolume = dryMortarVolume * (cementRatio / (cementRatio + sandRatio));
+    const sandVolume = dryMortarVolume * (sandRatio / (cementRatio + sandRatio));
+
+    // Convert cement to bags (1 bag = 50kg = 0.0347 m³)
+    const cementBags = Math.ceil(cementVolume / 0.0347);
+
+    // Display results
+    document.getElementById('brick-count').textContent = totalBricks;
+    document.getElementById('cement-required').textContent = cementBags;
+    document.getElementById('sand-required').textContent = sandVolume.toFixed(3);
+    document.getElementById('brick-results').style.display = 'block';
 }
 
 function resetCalculator() {
-    // Reset logic remains same as previous version
-    // (Include the full reset code from previous answer here)
+    // Reset inputs
+    document.getElementById('wall-type').value = 'load-bearing';
+    document.getElementById('wall-length').value = '';
+    document.getElementById('wall-height').value = '';
+    document.getElementById('has-windows').value = 'no';
+    
+    // Reset windows
+    const windowsContainer = document.getElementById('windows-container');
+    windowsContainer.innerHTML = `
+        <div class="window-input">
+            <div class="dimension-inputs">
+                <input type="number" class="win-length" step="0.1" placeholder="Length">
+                <input type="number" class="win-width" step="0.1" placeholder="Width">
+                <button class="remove-win" onclick="removeWindow(this)">×</button>
+            </div>
+        </div>
+        <button class="btn" onclick="addWindow()">+ Add Window</button>
+    `;
+    windowCount = 1;
+    windowsContainer.style.display = 'none';
+    
+    // Hide results
+    document.getElementById('brick-results').style.display = 'none';
 }
 </script>
-s
 </body>
 </html>
