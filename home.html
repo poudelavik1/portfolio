@@ -327,11 +327,13 @@
                     <p>Calculate required materials for Building works</p>
                 </a>
                 <section class="converter-section">
-    <div class="section-title">
-        <h3>Unit Converter</h2>
     </div>
+        </div>
     
     <div class="converter-container">
+        <div class="section-title">
+        <h3>Unit Converter</h2>
+    </div>
         <!-- Category Tabs -->
         <div class="category-tabs">
             <button class="tab active" data-category="length">Length</button>
@@ -519,17 +521,16 @@ function convertUnits() {
 // Initialize converter on load
 window.addEventListener('DOMContentLoaded', initConverter);
 </script>
-            </div>
-        </div>
+            
     </div>
 </section>
 
 <style>
 .contact-container {
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     align-items: stretch; /* Added for equal height */
@@ -549,9 +550,10 @@ window.addEventListener('DOMContentLoaded', initConverter);
 .contact-form {
     background: #fff;
     padding: 30px;
+    width: 33%;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    height: 50%; /* Make both containers equal height */
+    height: 100%; /* Make both containers equal height */
     box-sizing: border-box; /* Include padding in height */
     min-height: 500px; /* Set minimum height */
     display: flex;
