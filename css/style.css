@@ -344,15 +344,6 @@
             }
         }
 
-        /* Contact */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
 
         input, textarea {
             width: 100%;
