@@ -196,6 +196,83 @@
     padding: 1.5rem;
   }
 }
+.brick-calculator {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#windows-container {
+    display: none;
+    margin-top: 10px;
+}
+
+.window-input {
+    margin-bottom: 10px;
+}
+
+.dimension-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.remove-win {
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calculate-btn { background: #2A5C82; color: white; }
+.reset-btn { background: #666; color: white; }
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 5px;
+    display: none;
+}
+
+.result-item {
+    margin: 10px 0;
+}
     </style>
 </head>
 <body>
@@ -373,88 +450,6 @@
     </div>
 </div>
 </div>
-
-<style>
-/* CSS */
-.brick-calculator {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-#windows-container {
-    display: none;
-    margin-top: 10px;
-}
-
-.window-input {
-    margin-bottom: 10px;
-}
-
-.dimension-inputs {
-    display: flex;
-    gap: 10px;
-}
-
-.remove-win {
-    background: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-.button-group {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.calculate-btn { background: #2A5C82; color: white; }
-.reset-btn { background: #666; color: white; }
-
-.results {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 5px;
-    display: none;
-}
-
-.result-item {
-    margin: 10px 0;
-}
-</style>
-
 <script>
 // JavaScript
 let windowCount = 1;
