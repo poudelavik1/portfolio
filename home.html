@@ -326,11 +326,199 @@
                     <h4>Building Materials calculator</h4>
                     <p>Calculate required materials for Building works</p>
                 </a>
-                </a>
-                <a href="#unit-converter" class="tool-card">
-                    <h4>Unit Converter</h4>
-                    <p>Convert between different measurement units</p>
-                </a>
+                <section class="converter-section">
+    <div class="section-title">
+        <h3>Unit Converter</h2>
+    </div>
+    
+    <div class="converter-container">
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab active" data-category="length">Length</button>
+            <button class="tab" data-category="area">Area</button>
+            <button class="tab" data-category="volume">Volume</button>
+        </div>
+
+        <!-- Converter Interface -->
+        <div class="converter-box">
+            <div class="input-group">
+                <input type="number" id="input-value" placeholder="Enter value" step="any">
+                <p><select id="from-unit"></select>
+                <span>to</span>
+                <select id="to-unit"></select></p>
+            </div>
+            <button class="btn" onclick="convertUnits()">Convert</button>
+            <div class="result-box">
+                <span id="result">0.00</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.converter-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.converter-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.input-group input, 
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-group input {
+    flex: 2;
+    min-width: 150px;
+}
+
+.input-group select {
+    flex: 1;
+    min-width: 120px;
+}
+
+.result-box {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+@media (max-width: 600px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group input,
+    .input-group select {
+        width: 100%;
+    }
+}
+</style>
+
+<script>
+// Conversion factors (in meters base)
+const units = {
+    length: {
+        mm: 0.001,
+        cm: 0.01,
+        m: 1,
+        in: 0.0254,
+        ft: 0.3048
+    },
+    area: {
+        'mm²': 0.000001,
+        'cm²': 0.0001,
+        'm²': 1,
+        'in²': 0.00064516,
+        'ft²': 0.092903
+    },
+    volume: {
+        'mm³': 0.000000001,
+        'cm³': 0.000001,
+        'm³': 1,
+        'in³': 0.0000163871,
+        'ft³': 0.0283168
+    }
+};
+
+let currentCategory = 'length';
+
+// Initialize units
+function initConverter() {
+    // Set up tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            currentCategory = this.dataset.category;
+            populateUnits();
+        });
+    });
+
+    // Populate initial units
+    populateUnits();
+}
+
+function populateUnits() {
+    const fromSelect = document.getElementById('from-unit');
+    const toSelect = document.getElementById('to-unit');
+    const currentUnits = units[currentCategory];
+    
+    // Clear existing options
+    fromSelect.innerHTML = '';
+    toSelect.innerHTML = '';
+    
+    // Add new options
+    for (const unit in currentUnits) {
+        fromSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
+        toSelect.innerHTML += `<option value="${unit}">${unit}</option>`;
+    }
+    
+    // Set default selections
+    fromSelect.value = Object.keys(currentUnits)[2]; // Default to meters/m²/m³
+    toSelect.value = Object.keys(currentUnits)[3];   // Default to inches/in²/in³
+}
+
+function convertUnits() {
+    const inputValue = parseFloat(document.getElementById('input-value').value);
+    const fromUnit = document.getElementById('from-unit').value;
+    const toUnit = document.getElementById('to-unit').value;
+    
+    if (isNaN(inputValue)) {
+        alert('Please enter a valid number');
+        return;
+    }
+    
+    const baseValue = inputValue * units[currentCategory][fromUnit];
+    const result = baseValue / units[currentCategory][toUnit];
+    
+    document.getElementById('result').textContent = result.toFixed(4);
+}
+
+// Initialize converter on load
+window.addEventListener('DOMContentLoaded', initConverter);
+</script>
             </div>
         </div>
     </div>
@@ -347,12 +535,23 @@
     align-items: stretch; /* Added for equal height */
 }
 
-.contact-form, .tools-list {
+ .tools-list {
     background: #fff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     height: 100%; /* Make both containers equal height */
+    box-sizing: border-box; /* Include padding in height */
+    min-height: 500px; /* Set minimum height */
+    display: flex;
+    flex-direction: column;
+}
+.contact-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: 50%; /* Make both containers equal height */
     box-sizing: border-box; /* Include padding in height */
     min-height: 500px; /* Set minimum height */
     display: flex;
