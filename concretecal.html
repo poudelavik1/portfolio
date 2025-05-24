@@ -223,8 +223,9 @@ input, select {
 }
 
 #windows-container {
-    display: none;
+    display: flex;
     margin-top: 10px;
+    flex-direction: column;
 }
 
 .window-input {
@@ -429,7 +430,7 @@ input, select {
                 <button class="remove-win" onclick="removeWindow(this)">×</button>
             </div>
         </div>
-        <button class="btn" onclick="addWindow()">+ Add Window</button>
+         <button class="btn" onclick="addWindow()">+ Add Window</button>
     </div>
 
     <div class="button-group">
