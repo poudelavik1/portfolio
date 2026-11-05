@@ -84,7 +84,6 @@ h2 {
   .lead,
   .hero__lead,
   .about p,
-  .ticks li,
   .project p:not(.project__meta),
   .timeline__item p:not(.timeline__date):not(.timeline__place),
   .timeline__item li,
@@ -329,6 +328,8 @@ h2 {
 
 .section { padding-block: clamp(64px, 9vw, 112px); }
 .section--white { background: var(--surface); border-block: 1px solid var(--line); }
+.section--white .panel,
+.section--white .tool-card { background: var(--bg); }
 
 .section-label {
   margin-bottom: 10px;
@@ -471,76 +472,6 @@ h2 {
   .facts { grid-template-columns: 1fr; }
 }
 
-/* ---------- Research ---------- */
-
-.research {
-  display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
-}
-.research h2 { max-width: 20ch; }
-
-.ticks {
-  display: grid;
-  gap: 14px;
-  margin: 24px 0 28px;
-  list-style: none;
-}
-.ticks li { position: relative; padding-left: 26px; }
-.ticks li::before {
-  content: "";
-  position: absolute;
-  left: 2px; top: .62em;
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-.ticks strong { color: var(--ink); font-weight: 600; }
-
-.repo-links {
-  margin-top: 28px;
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-}
-.repo-links h3 { margin-bottom: 12px; font-size: 1rem; }
-.repo-links ul { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; }
-.repo-links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid var(--line-strong);
-  color: var(--ink);
-  font-weight: 500;
-  text-decoration: none;
-  transition: color .2s, border-color .2s;
-}
-.repo-links a:hover { color: var(--accent); border-color: var(--accent); }
-.repo-links .icon { width: 1.05em; height: 1.05em; }
-
-.research__figure {
-  position: sticky;
-  top: calc(var(--header-h) + 24px);
-  margin: 0;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-.research__figure img { width: 100%; }
-.research__figure figcaption {
-  margin-top: 14px;
-  color: var(--muted);
-  font-size: .86rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 960px) {
-  .research { grid-template-columns: 1fr; }
-  .research__figure { position: static; max-width: 560px; }
-}
-
 /* ---------- Projects ---------- */
 
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -629,7 +560,7 @@ h2 {
   width: 11px; height: 11px;
   border: 2px solid var(--accent);
   border-radius: 50%;
-  background: var(--bg);
+  background: var(--surface);
 }
 .timeline__date { margin-bottom: 4px; font-size: .86rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
 .timeline__item h4 { margin-bottom: 2px; font-size: 1.15rem; }
@@ -676,7 +607,7 @@ h2 {
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--bg);
+  background: var(--surface);
 }
 .skill-group h3 { margin-bottom: 16px; font-size: 1.05rem; }
 

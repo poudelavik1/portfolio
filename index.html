@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Avik Poudel | Civil &amp; Structural Engineer</title>
-  <meta name="description" content="Avik Poudel is a civil and structural engineer from Kathmandu, Nepal, studying for a Master's in Structural Engineering at the Asian Institute of Technology and researching deep-learning detection of hairline cracks in concrete.">
+  <meta name="description" content="Avik Poudel is a civil and structural engineer from Kathmandu, Nepal, studying for a Master's in Structural Engineering at the Asian Institute of Technology.">
   <link rel="canonical" href="https://www.avikpoudel.com.np/">
   <meta name="theme-color" content="#f7f7f5">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Avik Poudel">
   <meta property="og:title" content="Avik Poudel | Civil & Structural Engineer">
-  <meta property="og:description" content="Structural design, finite-element work and deep-learning crack detection.">
+  <meta property="og:description" content="Structural design, finite-element analysis and engineering tools.">
   <meta property="og:url" content="https://www.avikpoudel.com.np/">
   <meta property="og:image" content="https://www.avikpoudel.com.np/assets/img/og.jpg">
   <meta property="og:image:width" content="1200">
@@ -61,7 +61,6 @@
       <nav class="nav__menu" id="site-nav" aria-label="Main">
         <ul class="nav__links">
           <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#tools">Tools</a></li>
@@ -84,10 +83,10 @@
         <div>
           <p class="eyebrow">Civil &amp; structural engineer</p>
           <h1 class="hero__title" id="hero-title">Avik Poudel</h1>
-          <p class="hero__lead">I design reinforced-concrete buildings and build deep-learning tools that find hairline cracks in concrete. Right now I'm doing a Master's in Structural Engineering at the Asian Institute of Technology.</p>
+          <p class="hero__lead">I design reinforced-concrete buildings and write code for structural analysis. Right now I'm doing a Master's in Structural Engineering at the Asian Institute of Technology.</p>
           <div class="hero__actions">
-            <a class="btn" href="#research">
-              See my research
+            <a class="btn" href="#projects">
+              See my work
               <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-arrow-right"></use></svg>
             </a>
             <a class="btn btn--outline" href="resources/cv.pdf" download>
@@ -126,10 +125,10 @@
         </figure>
         <div class="reveal">
           <p class="section-label">About</p>
-          <h2 id="about-title">From site work to structural research</h2>
+          <h2 id="about-title">From site work to structural engineering</h2>
           <p class="lead">I grew up in Kathmandu fascinated by bridges and tall buildings, and that never really wore off.</p>
           <p>I studied civil engineering at Cosmos College of Management and Technology (Pokhara University), graduating with a 3.6 GPA. My final-year thesis was the design of a multistoried semi-commercial RCC building to NBC 105:2020, and I led the team that did it.</p>
-          <p>From December 2023 to June 2025 I worked as a civil engineer at Hints Consult, designing structures, supervising sites and keeping clients up to date. Now I'm at the Asian Institute of Technology in Thailand, where my research teaches neural networks to spot cracks only a pixel or two wide.</p>
+          <p>From December 2023 to June 2025 I worked as a civil engineer at Hints Consult, designing structures, supervising sites and keeping clients up to date. Now I'm at the Asian Institute of Technology in Thailand, studying for a Master's in Structural Engineering.</p>
           <p>Away from work I trek, take photographs, read and write code for fun.</p>
           <dl class="facts">
             <div><dt>Registration</dt><dd>Nepal Engineering Council, no. 80477</dd></div>
@@ -141,47 +140,9 @@
       </div>
     </section>
 
-    <!-- Research -->
-    <section class="section" id="research" aria-labelledby="research-title">
-      <div class="container research">
-        <div class="reveal">
-          <p class="section-label">Master's research</p>
-          <h2 id="research-title">Finding hairline cracks in concrete with deep learning</h2>
-          <p class="lead">The cracks that matter most in an inspection are often one or two pixels wide and barely darker than the concrete around them. My thesis trains segmentation networks to find them in inspection photos, then turns the result into drawings an engineer can use.</p>
-          <ul class="ticks">
-            <li><strong>Five networks, one pipeline.</strong> Swin U-Net, FiLM U-Net, a multi-decoder U-Net, UNet++ and HRCrackNet share the same data, augmentation, loss and metrics, so their results can be compared directly.</li>
-            <li><strong>Aware of scale.</strong> The FiLM U-Net is given each image's ground sampling distance (mm per pixel), so it knows how wide a real crack should look.</li>
-            <li><strong>Built for thin targets.</strong> HRCrackNet keeps a high-resolution branch through the whole network, sums evidence along the crack with directional strip convolutions, and learns a distance field around thin hand-drawn labels.</li>
-            <li><strong>From pixels to CAD.</strong> CrackDetector, a standalone Windows app, runs a trained model on new photos and writes the cracks to DXF for AutoCAD.</li>
-          </ul>
-          <ul class="chips" aria-label="Methods and tools">
-            <li>PyTorch</li>
-            <li>Swin Transformer</li>
-            <li>HRNet</li>
-            <li>BCE + Tversky + clDice loss</li>
-            <li>Slurm GPU jobs</li>
-            <li>DXF / AutoCAD</li>
-          </ul>
-          <div class="repo-links">
-            <h3>Code on GitHub</h3>
-            <ul>
-              <li><a href="https://github.com/poudelavik1/swinunet" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-github"></use></svg>Swin U-Net</a></li>
-              <li><a href="https://github.com/poudelavik1/filmunet" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-github"></use></svg>FiLM U-Net</a></li>
-              <li><a href="https://github.com/poudelavik1/addunet" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-github"></use></svg>Multi-decoder U-Net</a></li>
-              <li><a href="https://github.com/poudelavik1/Unet-" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-github"></use></svg>UNet++</a></li>
-              <li><a href="https://github.com/poudelavik1/HRCrackNet" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-github"></use></svg>HRCrackNet</a></li>
-            </ul>
-          </div>
-        </div>
-        <figure class="research__figure reveal">
-          <img src="assets/img/research-pipeline.svg" width="440" height="440" loading="lazy" alt="Diagram of the pipeline: a concrete photo with a hairline crack about one to two pixels wide, the crack mask the network predicts, and the same crack traced as a polyline for a DXF drawing.">
-          <figcaption>Illustration of the pipeline: inspection photo, predicted crack mask, and the polyline written to DXF.</figcaption>
-        </figure>
-      </div>
-    </section>
 
     <!-- Projects -->
-    <section class="section section--white" id="projects" aria-labelledby="projects-title">
+    <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-head">
           <div>
@@ -304,7 +265,7 @@
     </section>
 
     <!-- Experience & education -->
-    <section class="section" id="experience" aria-labelledby="experience-title">
+    <section class="section section--white" id="experience" aria-labelledby="experience-title">
       <div class="container">
         <p class="section-label">Experience &amp; education</p>
         <h2 id="experience-title">Where I've worked and studied</h2>
@@ -335,7 +296,6 @@
                 <p class="timeline__date">2025 – present</p>
                 <h4>Master's in Structural Engineering</h4>
                 <p class="timeline__place">Asian Institute of Technology, Thailand</p>
-                <p>Thesis research on deep-learning segmentation of hairline cracks in concrete.</p>
               </li>
               <li class="timeline__item">
                 <p class="timeline__date">2018 – 2023</p>
@@ -361,7 +321,7 @@
     </section>
 
     <!-- Skills -->
-    <section class="section section--white" id="skills" aria-labelledby="skills-title">
+    <section class="section" id="skills" aria-labelledby="skills-title">
       <div class="container">
         <p class="section-label">Skills</p>
         <h2 id="skills-title">What I work with</h2>
@@ -395,7 +355,7 @@
     </section>
 
     <!-- Tools -->
-    <section class="section" id="tools" aria-labelledby="tools-title">
+    <section class="section section--white" id="tools" aria-labelledby="tools-title">
       <div class="container">
         <p class="section-label">Tools</p>
         <h2 id="tools-title">Small calculators for site work</h2>
@@ -445,7 +405,7 @@
     </section>
 
     <!-- Travel -->
-    <section class="section section--white" id="travel" aria-labelledby="travel-title">
+    <section class="section" id="travel" aria-labelledby="travel-title">
       <div class="container">
         <div class="section-head">
           <div>
@@ -464,12 +424,12 @@
     </section>
 
     <!-- Contact -->
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <section class="section section--white" id="contact" aria-labelledby="contact-title">
       <div class="container contact">
         <div class="reveal">
           <p class="section-label">Contact</p>
           <h2 id="contact-title">Let's talk structures</h2>
-          <p>Questions about my research, a project, or one of the tools? Send a message or get in touch directly.</p>
+          <p>Questions about a project or one of the tools? Send a message or get in touch directly.</p>
           <ul class="contact-list">
             <li>
               <span class="icon-wrap"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-envelope"></use></svg></span>
