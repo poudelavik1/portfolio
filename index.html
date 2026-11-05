@@ -21,8 +21,8 @@
   <link rel="icon" href="favicon.ico?v=20261106" sizes="32x32">
   <link rel="icon" href="assets/img/favicon.svg?v=20261106" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=20261106">
-  <link rel="preload" as="image" href="assets/img/hero.jpg" imagesrcset="assets/img/hero-sm.jpg 1100w, assets/img/hero.jpg 2200w" imagesizes="(max-width: 860px) 100vw, 50vw">
-  <link rel="stylesheet" href="assets/css/site.css?v=20261106">
+  <link rel="preload" as="image" href="assets/img/hero.jpg" imagesrcset="assets/img/hero-sm.jpg 1100w, assets/img/hero.jpg 2200w" imagesizes="100vw">
+  <link rel="stylesheet" href="assets/css/site.css?v=2026110602">
   <script>document.documentElement.classList.add('js');</script>
 
   <script type="application/ld+json">
@@ -79,8 +79,9 @@
 
     <!-- Hero -->
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero__grid">
-        <div>
+      <img class="hero__bg" src="assets/img/hero.jpg" srcset="assets/img/hero-sm.jpg 1100w, assets/img/hero.jpg 2200w" sizes="100vw" width="2200" height="1650" alt="" fetchpriority="high">
+      <div class="container hero__inner">
+        <div class="hero__text">
           <p class="eyebrow">Civil &amp; structural engineer</p>
           <h1 class="hero__title" id="hero-title">Avik Poudel</h1>
           <p class="hero__lead">I design reinforced-concrete buildings and write code for structural analysis. Right now I'm doing a Master's in Structural Engineering at the Asian Institute of Technology.</p>
@@ -95,9 +96,6 @@
             </a>
           </div>
         </div>
-        <figure class="hero__media">
-          <img src="assets/img/hero.jpg" srcset="assets/img/hero-sm.jpg 1100w, assets/img/hero.jpg 2200w" sizes="(max-width: 860px) 100vw, 50vw" width="2200" height="1650" alt="A snow-capped Himalayan peak glowing orange at sunrise above a sea of clouds" fetchpriority="high">
-        </figure>
       </div>
       <div class="container">
         <dl class="hero__facts">
