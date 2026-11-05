@@ -82,8 +82,8 @@
       const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
       const body = encodeURIComponent(`${String(data.get('message')).trim()}\n\n${name}\n${data.get('email')}`);
       const note = form.querySelector('[data-form-note]');
-      if (note) note.textContent = 'Opening your email app. If nothing happens, write to avikpoudel4@gmail.com.';
-      window.location.href = `mailto:avikpoudel4@gmail.com?subject=${subject}&body=${body}`;
+      if (note) note.textContent = 'Opening your email app. If nothing happens, write to poudel.avik91@gmail.com.';
+      window.location.href = `mailto:poudel.avik91@gmail.com?subject=${subject}&body=${body}`;
     });
   }
 
