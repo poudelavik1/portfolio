@@ -1,240 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel &amp; Photography | Avik Poudel</title>
+  <meta name="description" content="Photographs by Avik Poudel from treks, field work and trips around Nepal: Annapurna Base Camp, Gosaikunda, Ilam, Janakpur and more.">
+  <link rel="canonical" href="http://www.avikpoudel.com.np/hobby.html">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Travel & Photography | Avik Poudel">
+  <meta property="og:description" content="Photographs from treks, field work and trips around Nepal.">
+  <meta property="og:url" content="http://www.avikpoudel.com.np/hobby.html">
+  <meta property="og:image" content="http://www.avikpoudel.com.np/assets/img/travel/abc.jpg">
 
-        body {
-            font-family: 'Arial', sans-serif;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        /* Background with gradient overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                linear-gradient(rgba(25, 25, 25, 0.7), 
-                rgba(10, 10, 10, 0.7)),
-                url('Photos/Background.jpg') center/cover fixed;
-        }
-
-        /* Navigation Bar */
-        .nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-        }
-
-        .nav h1 {
-            color: white;
-            font-family: 'Brush Script MT', cursive;
-            font-weight: bold;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Gallery Section */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 100px 20px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .photo-box {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .photo-box img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            cursor: pointer;
-        }
-
-        .photo-info {
-            padding: 15px;
-        }
-
-        .photo-info h3 {
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .photo-info p {
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            margin: auto;
-            display: block;
-            border-radius: 5px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                padding-top: 80px;
-            }
-            
-            .nav h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-    <nav class="nav">
-        <h1>Travel</h1>
-    </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="gallery" id="gallery"></div>
-
-    <div class="modal" id="modal" onclick="closeModal()">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modal-img">
+  <header class="site-header is-solid" data-header data-solid>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">AP</span>
+        <span>Avik Poudel</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="nav__menu" id="site-nav" aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#tools">Tools</a></li>
+          <li><a href="hobby.html" aria-current="page">Travel</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn--small" href="resources/cv.pdf" download>
+          <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-download"></use></svg>
+          CV
+        </a>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        // Add your photos here
-        const photoData = [
-            {
-                url: "Photos/random.jpg",
-                title: "Random art",
-                description: "Random art in the Mountains"
-            },
-            {
-                url: "Photos/cj.JPG",
-                title: "Concrete Jungle",
-                description: "View of Kathmandu from Chandragiri Hills"
-            },
-            {
-                url: "Photos/Sunrise.JPG",
-                title: "Sunrise",
-                description: "Sunrise, Khumaltar, Lalitpur"
-            },
-            {
-                url: "Photos/janaki.JPG",
-                title: "Janaki Temple",
-                description: "Janaki Temple, Janakpur"
-            },
-             {
-                url: "Photos/jarsing.jpg",
-                title: "Gumba",
-                description: "Jarsing pauwa"
-            },
-             {
-                url: "Photos/ABC.jpg",
-                title: "Annapurna Base Camp",
-                description: "Annapurna Base Camp Trek"
-            },
-             {
-                url: "Photos/survey.jpg",
-                title: "Irrigation Survey",
-                description: "Ghatte Khola Irrigation Survey, Shankharapur, Kathmandu"
-            },
-             {
-                url: "Photos/tea.JPG",
-                title: "Tea Garden",
-                description: "Tea feilds, kanyam, Illam"
-            },
-             {
-                url: "Photos/goshainkunda.JPG",
-                title: "Goshainkunda lake",
-                description: "Giishankunda lake, Rasuwa"
-            },
-        
-            
-            // Add more photos as needed
-        ];
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <a class="back-link" href="index.html"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-chevron-left"></use></svg> Portfolio</a>
+        <h1>Travel &amp; photography</h1>
+        <p>Photos from treks, field work and trips around Nepal. Select any photo to see it full size.</p>
+      </div>
+    </section>
 
-        function createGallery() {
-            const gallery = document.getElementById('gallery');
-            
-            photoData.forEach(photo => {
-                const box = document.createElement('div');
-                box.className = 'photo-box';
-                box.innerHTML = `
-                    <img src="${photo.url}" alt="${photo.title}">
-                    <div class="photo-info">
-                        <h3>${photo.title}</h3>
-                        <p>${photo.description}</p>
-                    </div>
-                `;
-                
-                box.querySelector('img').addEventListener('click', () => 
-                    openModal(photo.url));
-                gallery.appendChild(box);
-            });
-        }
+    <section class="section page-body">
+      <div class="container">
+        <div class="gallery">
+          <figure class="gallery__item" id="abc">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/abc.jpg" data-title="Annapurna Base Camp" data-desc="Annapurna Base Camp trek">
+              <img src="assets/img/travel/abc-sm.jpg" width="640" height="641" alt="Silhouette of a trekker in front of snow-covered Annapurna peaks">
+            </button>
+            <figcaption><h2>Annapurna Base Camp</h2><p>Annapurna Base Camp trek</p></figcaption>
+          </figure>
 
-        function openModal(imgSrc) {
-            document.getElementById('modal').style.display = 'block';
-            document.getElementById('modal-img').src = imgSrc;
-        }
+          <figure class="gallery__item" id="cj">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/cj.jpg" data-title="Concrete jungle" data-desc="Kathmandu from Chandragiri Hills">
+              <img src="assets/img/travel/cj-sm.jpg" width="760" height="507" alt="Kathmandu spread across the valley, seen from Chandragiri Hills, with a street lamp in the foreground">
+            </button>
+            <figcaption><h2>Concrete jungle</h2><p>Kathmandu from Chandragiri Hills</p></figcaption>
+          </figure>
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
+          <figure class="gallery__item" id="random">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/random.jpg" data-title="Random art" data-desc="Random art in the mountains">
+              <img src="assets/img/travel/random-sm.jpg" width="760" height="665" loading="lazy" alt="A smiling face made of pebbles on a rock beside a mountain trail">
+            </button>
+            <figcaption><h2>Random art</h2><p>Random art in the mountains</p></figcaption>
+          </figure>
 
-        // Initialize gallery
-        document.addEventListener('DOMContentLoaded', createGallery);
-    </script>
+          <figure class="gallery__item" id="goshainkunda">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/goshainkunda.jpg" data-title="Gosaikunda lake" data-desc="Gosaikunda, Rasuwa">
+              <img src="assets/img/travel/goshainkunda-sm.jpg" width="760" height="570" loading="lazy" alt="Gosaikunda, a deep blue alpine lake surrounded by rocky mountains">
+            </button>
+            <figcaption><h2>Gosaikunda lake</h2><p>Gosaikunda, Rasuwa</p></figcaption>
+          </figure>
+
+          <figure class="gallery__item" id="sunrise">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/sunrise.jpg" data-title="Sunrise" data-desc="Khumaltar, Lalitpur">
+              <img src="assets/img/travel/sunrise-sm.jpg" width="688" height="760" loading="lazy" alt="Orange sunrise under dark clouds over a green field, framed by trees">
+            </button>
+            <figcaption><h2>Sunrise</h2><p>Khumaltar, Lalitpur</p></figcaption>
+          </figure>
+
+          <figure class="gallery__item" id="tea">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/tea.jpg" data-title="Tea gardens" data-desc="Kanyam, Ilam">
+              <img src="assets/img/travel/tea-sm.jpg" width="760" height="570" loading="lazy" alt="Rows of green tea bushes on a hillside in Kanyam, Ilam">
+            </button>
+            <figcaption><h2>Tea gardens</h2><p>Kanyam, Ilam</p></figcaption>
+          </figure>
+
+          <figure class="gallery__item" id="janaki">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/janaki.jpg" data-title="Janaki Temple" data-desc="Janakpur">
+              <img src="assets/img/travel/janaki-sm.jpg" width="760" height="570" loading="lazy" alt="The white Janaki Temple in Janakpur, with visitors in the courtyard">
+            </button>
+            <figcaption><h2>Janaki Temple</h2><p>Janakpur</p></figcaption>
+          </figure>
+
+          <figure class="gallery__item" id="jarsing">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/jarsing.jpg" data-title="Gumba" data-desc="Jarsing Pauwa">
+              <img src="assets/img/travel/jarsing-sm.jpg" width="760" height="570" loading="lazy" alt="A gumba (Buddhist monastery) half hidden in mist behind pine trees">
+            </button>
+            <figcaption><h2>Gumba</h2><p>Jarsing Pauwa</p></figcaption>
+          </figure>
+
+          <figure class="gallery__item" id="survey">
+            <button class="gallery__open" type="button" data-full="assets/img/travel/survey.jpg" data-title="Irrigation survey" data-desc="Ghatte Khola irrigation survey, Shankharapur, Kathmandu">
+              <img src="assets/img/travel/survey-sm.jpg" width="760" height="570" loading="lazy" alt="Surveying instrument on a tripod beside a stream in the forest">
+            </button>
+            <figcaption><h2>Irrigation survey</h2><p>Ghatte Khola irrigation survey, Shankharapur, Kathmandu</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+    <div class="lightbox__inner">
+      <img alt="">
+      <p class="lightbox__caption"><strong data-lb-title></strong><span data-lb-desc></span></p>
+    </div>
+    <button class="lightbox__btn lightbox__close" type="button" data-lb-close aria-label="Close">
+      <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-xmark"></use></svg>
+    </button>
+    <button class="lightbox__btn lightbox__prev" type="button" data-lb-prev aria-label="Previous photo">
+      <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-chevron-left"></use></svg>
+    </button>
+    <button class="lightbox__btn lightbox__next" type="button" data-lb-next aria-label="Next photo">
+      <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-chevron-right"></use></svg>
+    </button>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer">
+      <p>© <span data-year>2026</span> Avik Poudel</p>
+      <nav aria-label="Footer">
+        <a href="index.html">Portfolio</a>
+        <a href="https://github.com/poudelavik1" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/avik-poudel-980027285/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="resources/cv.pdf" download>CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
 </body>
 </html>

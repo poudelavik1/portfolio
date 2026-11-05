@@ -1,567 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Materials Calculator</title>
-    <style>
-        :root {
-            --primary: #2A5C82;
-            --secondary: #bac4c1;
-            --dark: #131313;
-            --light: #f7f7f7;
-        }
-        .mix-option h3,.mix-option p { 
-            color: var(--dark); 
-            text-align: center;}
-        .mix-option {
-        border: 2px solid #000000 !important; /* Black border */
-        border-radius: 10px !important; /* Rounded corners */}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building Materials Calculator | Avik Poudel</title>
+  <meta name="description" content="Free calculator for cement, sand, aggregate and water in a concrete pour, and bricks, cement and sand for brick masonry with openings. Results in m³ and cubic feet.">
+  <link rel="canonical" href="http://www.avikpoudel.com.np/concretecal.html">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Building Materials Calculator | Avik Poudel">
+  <meta property="og:description" content="Cement, sand, aggregate, bricks and water for concrete and brickwork.">
+  <meta property="og:url" content="http://www.avikpoudel.com.np/concretecal.html">
+  <meta property="og:image" content="http://www.avikpoudel.com.np/assets/img/construction.jpg">
 
-.mix-option.active {
-  border: 3px solid #000000 !important; /* Thicker border for active state */
-  box-shadow: 0 0 10px rgba(0,0,0,0.2) !important; /* Optional shadow enhancement */
-}
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(rgba(132, 149, 161, 0.85), 
-                        rgba(26, 46, 64, 0.85)),
-                        url('resources/construction.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 100vh;
-            color: var(--light);
-        }
-
-        .top-bar {
-            background: rgba(26, 46, 64, 0.95);
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .top-bar h1 {
-            color: var(--secondary);
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .calculator-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        }
-        .calculator-container h2,.calculator-container p { 
-            color: var(--dark); 
-            text-align: center;}
-
-        .mix-ratio-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .mix-option {
-            padding: 1rem;
-            background: var(--light);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .mix-option:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .mix-option.active {
-            border-color: var(--primary);
-            background: var(--secondary);
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--primary);
-            border-radius: 8px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        button {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-        }
-
-        button:hover {
-            background: var(--secondary);
-            color: var(--dark);
-            transform: translateY(-2px);
-        }
-
-        .results {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 10px;
-            display: none;
-        }
-
-        .result-item {
-            margin: 1rem 0;
-            padding: 0.5rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        @media (max-width: 768px) {
-            .calculator-container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .mix-ratio-section {
-                grid-template-columns: 1fr;
-            }
-        }
-        /* Modify the results section */
-.results {
-  color: #000000; /* Black color for all text in results */
-}
-
-.results h3 {
-  color: #000000 !important; /* Black color for headings */
-}
-
-.results p {
-  color: #000000; /* Black color for paragraph text */
-}
-
-.results span {
-  color: #000000 !important; /* Black color for numbers */
-}
-.tools-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  max-width: 1400px;
-  margin: 2rem auto;
-  padding: 0 2rem;
-}
-
-.tool-card {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 768px) {
-  .tools-container {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
-  
-  .tool-card {
-    padding: 1.5rem;
-  }
-}
-.brick-calculator {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-#windows-container {
-    display: flex;
-    margin-top: 10px;
-    flex-direction: column;
-}
-
-.window-input {
-    margin-bottom: 10px;
-}
-
-.dimension-inputs {
-    display: flex;
-    gap: 10px;
-}
-
-.remove-win {
-    background: #ff4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
-
-.button-group {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.calculate-btn { background: #2A5C82; color: white; }
-.reset-btn { background: #666; color: white; }
-
-.results {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f5f5f5;
-    border-radius: 5px;
-    display: none;
-}
-
-.result-item {
-    margin: 10px 0;
-}
-    </style>
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-    <div class="top-bar">
-        <h1>Building Material Calculator</h1>
-        <p>Calculate Required Materials for Your Construction Project</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header is-solid" data-header data-solid>
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">AP</span>
+        <span>Avik Poudel</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav class="nav__menu" id="site-nav" aria-label="Main">
+        <ul class="nav__links">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#tools" aria-current="page">Tools</a></li>
+          <li><a href="hobby.html">Travel</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn--small" href="resources/cv.pdf" download>
+          <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-download"></use></svg>
+          CV
+        </a>
+      </nav>
     </div>
-    <script>
-        let currentRatio = "1:3:6";
-        let currentGrade = "M10";
+  </header>
 
-        function selectMixRatio(element, grade) {
-            document.querySelectorAll('.mix-option').forEach(opt => {
-                opt.classList.remove('active');
-                opt.style.background = "var(--light)";
-            });
-            element.classList.add('active');
-            element.style.background = "var(--secondary)";
-            currentRatio = element.getAttribute('data-ratio');
-            currentGrade = grade;
-            document.getElementById('custom-ratio').disabled = true;
-        }
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <a class="back-link" href="index.html#tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-chevron-left"></use></svg> Portfolio</a>
+        <h1>Building materials calculator</h1>
+        <p>Quick quantities for a concrete pour or a brick wall. Everything is calculated in your browser, and the assumptions are listed under each calculator so you can check them.</p>
+      </div>
+    </section>
 
-        function calculateMaterials() {
-            const volume = parseFloat(document.getElementById('volume').value);
-            const waterRatio = parseFloat(document.getElementById('water-ratio').value);
-            
-            if (isNaN(volume)) {
-                alert("Please enter valid concrete volume");
-                return;
-            }
+    <section class="section page-body">
+      <div class="container calc-grid">
 
-            const [cementPart, sandPart, aggregatePart] = currentRatio.split(':').map(Number);
-            const totalParts = cementPart + sandPart + aggregatePart;
-            const dryVolumeFactor = 1.54;
+        <!-- Concrete -->
+        <form class="panel" id="concrete-form" novalidate>
+          <h2>Concrete</h2>
+          <p class="panel-intro">Cement, sand, aggregate and water for a nominal-mix pour.</p>
 
-            // Calculations
-            const cementVolume = (cementPart/totalParts) * dryVolumeFactor * volume;
-            const sandVolume = (sandPart/totalParts) * dryVolumeFactor * volume;
-            const aggregateVolume = (aggregatePart/totalParts) * dryVolumeFactor * volume;
-            const cementKg = cementVolume * 1440; // 1440 kg/m³ density
-            const cementBags = Math.ceil(cementKg / 50);
-            const waterLitres = Math.ceil(cementKg * waterRatio);
+          <div class="field">
+            <label for="c-volume">Wet volume of concrete (m³)</label>
+            <input class="input" id="c-volume" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 2.5" required>
+          </div>
 
-            // Display results
-            document.getElementById('cement').textContent = cementBags;
-            document.getElementById('sand').textContent = sandVolume.toFixed(2);
-            document.getElementById('aggregate').textContent = aggregateVolume.toFixed(2);
-            document.getElementById('water').textContent = waterLitres;
-            document.getElementById('results').style.display = 'block';
-        }
-
-        // Enable custom ratio input
-        document.getElementById('custom-ratio').addEventListener('focus', function() {
-            document.querySelectorAll('.mix-option').forEach(opt => opt.classList.remove('active'));
-            this.disabled = false;
-            currentRatio = this.value;
-        });
-    </script>
-    <!-- Add this container around your tools -->
-<div class="tools-container">
-    <!-- Concrete Calculator -->
-    <div class="tool-card">
-        <div class="calculator-container">
-            <center><h2>Concrete Calculator</h2></center>
-            <div class="input-group">
-                <label for="volume">Concrete Volume (m³)</label>
-                <input type="number" id="volume" step="0.1" min="0" placeholder="Enter volume in cubic meters">
+          <p class="label" id="mix-label">Mix</p>
+          <div class="choice-grid" role="radiogroup" aria-labelledby="mix-label">
+            <div class="choice">
+              <input type="radio" name="mix" id="mix-m10" value="1:3:6" checked>
+              <label for="mix-m10"><strong>M10 · 1:3:6</strong><span>Lean concrete, levelling course</span></label>
             </div>
-            
-            <label>Choose the Mix Ratio</label>
-            <div class="mix-ratio-section">
-                <div class="mix-option active" data-ratio="1:3:6" onclick="selectMixRatio(this, 'M10')">
-                    <h3>M10 (1:3:6)</h3>
-                    <p>General Purpose Concrete</p>
-                </div>
-                <div class="mix-option" data-ratio="1:2:4" onclick="selectMixRatio(this, 'M15')">
-                    <h3>M15 (1:2:4)</h3>
-                    <p>Reinforced Concrete</p>
-                </div>
-                <div class="mix-option" data-ratio="1:1.5:3" onclick="selectMixRatio(this, 'M20')">
-                    <h3>M20 (1:1.5:3)</h3>
-                    <p>Heavy Duty Concrete</p>
-                </div>
+            <div class="choice">
+              <input type="radio" name="mix" id="mix-m15" value="1:2:4">
+              <label for="mix-m15"><strong>M15 · 1:2:4</strong><span>Plain concrete, footings</span></label>
             </div>
-
-            <div class="input-group">
-                <label for="water-ratio">Water-Cement Ratio</label>
-                <select id="water-ratio">
-                    <option value="0.4">0.4 (Dry Mix)</option>
-                    <option value="0.5" selected>0.5 (Standard)</option>
-                    <option value="0.6">0.6 (Wet Mix)</option>
-                </select>
+            <div class="choice">
+              <input type="radio" name="mix" id="mix-m20" value="1:1.5:3">
+              <label for="mix-m20"><strong>M20 · 1:1.5:3</strong><span>Reinforced concrete</span></label>
             </div>
-
-            <button onclick="calculateMaterials()">Calculate Materials</button>
-
-            <div class="results" id="results">
-                <div class="result-item">
-                    <h3>Cement Required</h3>
-                    <p><span id="cement">0</span> bags (50kg each)</p>
-                </div>
-                <div class="result-item">
-                    <h3>Sand Needed</h3>
-                    <p><span id="sand">0</span> m³</p>
-                </div>
-                <div class="result-item">
-                    <h3>Aggregate Needed</h3>
-                    <p><span id="aggregate">0</span> m³</p>
-                </div>
-                <div class="result-item">
-                    <h3>Water Required</h3>
-                    <p><span id="water">0</span> liters</p>
-                </div>
+            <div class="choice">
+              <input type="radio" name="mix" id="mix-custom" value="custom">
+              <label for="mix-custom"><strong>Custom</strong><span>Enter your own ratio</span></label>
             </div>
-        </div>
-    </div>
-  <!-- HTML -->
-   <div class="tool-card">
-<div class="calculator-container">
-    <h2>Brickwork Calculator</h2>
-    
-    <div class="input-group">
-        <label for="wall-type">Wall Type</label>
-        <select id="wall-type">
-            <option value="load-bearing">Load Bearing (1:4)</option>
-            <option value="non-load-bearing">Non-Load Bearing (1:6)</option>
-        </select>
-    </div>
+          </div>
 
-    <div class="input-group">
-        <label for="wall-length">Wall Length (m)</label>
-        <input type="number" id="wall-length" step="0.1" min="0">
-    </div>
-
-    <div class="input-group">
-        <label for="wall-height">Wall Height (m)</label>
-        <input type="number" id="wall-height" step="0.1" min="0">
-    </div>
-
-    <div class="input-group">
-        <label>Windows in Wall?</label>
-        <select id="has-windows" onchange="toggleWindows()">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-        </select>
-    </div>
-
-    <div id="windows-container">
-        <div class="window-input">
-            <div class="dimension-inputs">
-                <input type="number" class="win-length" step="0.1" placeholder="Length">
-                <input type="number" class="win-width" step="0.1" placeholder="Width">
-                <button class="remove-win" onclick="removeWindow(this)">×</button>
+          <fieldset class="field" id="custom-ratio" hidden style="border:0;padding:0;margin-inline:0">
+            <legend class="label">Custom ratio (cement : sand : aggregate)</legend>
+            <div class="row-3">
+              <input class="input" type="number" min="0" step="any" value="1" aria-label="Cement parts" data-part="cement">
+              <input class="input" type="number" min="0" step="any" value="2" aria-label="Sand parts" data-part="sand">
+              <input class="input" type="number" min="0" step="any" value="4" aria-label="Aggregate parts" data-part="aggregate">
             </div>
-        </div>
-         <button class="btn" onclick="addWindow()">+ Add Window</button>
-    </div>
+          </fieldset>
 
-    <div class="button-group">
-        <button class="btn calculate-btn" onclick="calculateBrickwork()">Calculate</button>
-        <button class="btn reset-btn" onclick="resetCalculator()">Reset</button>
-    </div>
+          <div class="field">
+            <label for="c-wc">Water–cement ratio</label>
+            <select class="input" id="c-wc">
+              <option value="0.40">0.40</option>
+              <option value="0.45">0.45</option>
+              <option value="0.50" selected>0.50</option>
+              <option value="0.55">0.55</option>
+              <option value="0.60">0.60</option>
+            </select>
+          </div>
 
-    <div class="results" id="brick-results">
-        <div class="result-item">
-            <h3>Bricks Required: <span id="brick-count">0</span></h3>
-        </div>
-        <div class="result-item">
-            <h3>Cement: <span id="cement-required">0</span> bags</h3>
-        </div>
-        <div class="result-item">
-            <h3>Sand: <span id="sand-required">0</span> m³</h3>
-        </div>
-    </div>
-</div>
-</div>
-<script>
-// JavaScript
-let windowCount = 1;
+          <button class="btn btn--block" type="submit">Calculate</button>
+          <p class="form-error" data-error aria-live="polite"></p>
 
-function toggleWindows() {
-    const container = document.getElementById('windows-container');
-    container.style.display = document.getElementById('has-windows').value === 'yes' 
-        ? 'flex'  // Changed to flex for better layout
-        : 'none';
-}
+          <div class="results" data-results hidden aria-live="polite">
+            <div><strong data-out="cement-bags">0</strong>bags of cement <em data-out="cement-kg"></em></div>
+            <div><strong data-out="water">0</strong>litres of water</div>
+            <div><strong data-out="sand">0</strong>m³ of sand <em data-out="sand-cft"></em></div>
+            <div><strong data-out="aggregate">0</strong>m³ of aggregate <em data-out="agg-cft"></em></div>
+          </div>
 
-function addWindow() {
-    const container = document.getElementById('windows-container');
-    const newWindow = document.querySelector('.window-input').cloneNode(true);
-    newWindow.querySelectorAll('input').forEach(input => input.value = '');
-    container.insertBefore(newWindow, container.lastElementChild);
-    windowCount++;
-}
+          <details class="assumptions">
+            <summary>Assumptions</summary>
+            <ul>
+              <li>Dry volume = 1.54 × wet volume, split by the mix ratio.</li>
+              <li>Cement density 1440 kg/m³, 50 kg bags.</li>
+              <li>Water = water–cement ratio × mass of cement.</li>
+              <li>No allowance for wastage. Nominal mixes only; use a mix design for important work.</li>
+            </ul>
+          </details>
+        </form>
 
-function removeWindow(btn) {
-    if(windowCount > 1) {
-        btn.closest('.window-input').remove();
-        windowCount--;
-    }
-}
+        <!-- Brickwork -->
+        <form class="panel" id="brick-form" novalidate>
+          <h2>Brickwork</h2>
+          <p class="panel-intro">Bricks, cement and sand for a wall of standard 240 × 115 × 57 mm bricks.</p>
 
-function calculateBrickwork() {
-    // Brick specifications
-    const brickSize = {
-        length: 0.24,   // meters
-        width: 0.115,   // meters
-        height: 0.057   // meters
-    };
-    const mortarThickness = 0.01; // 10mm
-    const dryMixPercentage = 0.33; // 33%
-
-    // Get wall type and mortar ratio
-    const wallType = document.getElementById('wall-type').value;
-    const [cementRatio, sandRatio] = wallType === 'load-bearing' ? [1, 4] : [1, 6];
-
-    // Get wall dimensions
-    const wallLength = parseFloat(document.getElementById('wall-length').value) || 0;
-    const wallHeight = parseFloat(document.getElementById('wall-height').value) || 0;
-
-    // Calculate total wall area
-    const totalWallArea = wallLength * wallHeight;
-
-    // Calculate window areas
-    let windowArea = 0;
-    if(document.getElementById('has-windows').value === 'yes') {
-        const windows = document.querySelectorAll('.window-input');
-        windows.forEach(window => {
-            const length = parseFloat(window.querySelector('.win-length').value) || 0;
-            const width = parseFloat(window.querySelector('.win-width').value) || 0;
-            windowArea += length * width;
-        });
-    }
-
-    // Calculate effective brick dimensions with mortar
-    const effectiveLength = brickSize.length + mortarThickness/2;
-    const effectiveHeight = brickSize.height + mortarThickness/2;
-
-    // Calculate bricks per square meter
-    const bricksPerSqm = 1 / (effectiveLength * effectiveHeight);
-
-    // Calculate total bricks
-    const netWallArea = Math.max(0, totalWallArea - windowArea);
-    const totalBricksww = Math.ceil(netWallArea * bricksPerSqm);
-    const totalBricks = Math.ceil(totalBricksww*1.05); // Adding 5% extra for wastage
-
-    // Calculate mortar components
-    const totalMortarVolume = netWallArea - totalBricks * (brickSize.length * brickSize.width * brickSize.height);
-    const dryMortarVolume = totalMortarVolume *(1 + dryMixPercentage);
-    const cementVolume = dryMortarVolume * (cementRatio / (cementRatio + sandRatio));
-    const sandVolume = dryMortarVolume * (sandRatio / (cementRatio + sandRatio));
-
-    // Convert cement to bags (1 bag = 50kg = 0.0347 m³)
-    const cementBags = Math.ceil(cementVolume / 0.0347);
-
-    // Display results
-    document.getElementById('brick-count').textContent = totalBricks;
-    document.getElementById('cement-required').textContent = cementBags;
-    document.getElementById('sand-required').textContent = sandVolume.toFixed(3);
-    document.getElementById('brick-results').style.display = 'block';
-}
-
-function resetCalculator() {
-    // Reset inputs
-    document.getElementById('wall-type').value = 'load-bearing';
-    document.getElementById('wall-length').value = '';
-    document.getElementById('wall-height').value = '';
-    document.getElementById('has-windows').value = 'no';
-    
-    // Reset windows
-    const windowsContainer = document.getElementById('windows-container');
-    windowsContainer.innerHTML = `
-        <div class="window-input">
-            <div class="dimension-inputs">
-                <input type="number" class="win-length" step="0.1" placeholder="Length">
-                <input type="number" class="win-width" step="0.1" placeholder="Width">
-                <button class="remove-win" onclick="removeWindow(this)">×</button>
+          <p class="label" id="wall-label">Wall</p>
+          <div class="choice-grid" role="radiogroup" aria-labelledby="wall-label">
+            <div class="choice">
+              <input type="radio" name="wall" id="wall-230" value="0.23" data-mortar="4" checked>
+              <label for="wall-230"><strong>230 mm</strong><span>One brick, load-bearing</span></label>
             </div>
-        </div>
-        <button class="btn" onclick="addWindow()">+ Add Window</button>
-    `;
-    windowCount = 1;
-    windowsContainer.style.display = 'none';
-    
-    // Hide results
-    document.getElementById('brick-results').style.display = 'none';
-}
-</script>
+            <div class="choice">
+              <input type="radio" name="wall" id="wall-115" value="0.115" data-mortar="6">
+              <label for="wall-115"><strong>115 mm</strong><span>Half brick, partition</span></label>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="b-length">Length (m)</label>
+              <input class="input" id="b-length" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 4" required>
+            </div>
+            <div class="field">
+              <label for="b-height">Height (m)</label>
+              <input class="input" id="b-height" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 3" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="b-mortar">Mortar (cement : sand)</label>
+            <select class="input" id="b-mortar">
+              <option value="3">1 : 3</option>
+              <option value="4" selected>1 : 4</option>
+              <option value="5">1 : 5</option>
+              <option value="6">1 : 6</option>
+            </select>
+          </div>
+
+          <p class="label">Doors and windows</p>
+          <div class="openings" data-openings></div>
+          <template id="opening-template">
+            <div class="opening">
+              <input class="input" type="number" inputmode="decimal" min="0" step="any" placeholder="Width (m)" aria-label="Opening width in metres" data-dim="w">
+              <input class="input" type="number" inputmode="decimal" min="0" step="any" placeholder="Height (m)" aria-label="Opening height in metres" data-dim="h">
+              <button class="icon-btn" type="button" aria-label="Remove this opening" data-remove>
+                <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#i-xmark"></use></svg>
+              </button>
+            </div>
+          </template>
+          <button class="btn btn--outline btn--small" type="button" data-add-opening style="margin-bottom: 20px">+ Add an opening</button>
+
+          <button class="btn btn--block" type="submit">Calculate</button>
+          <p class="form-error" data-error aria-live="polite"></p>
+
+          <div class="results" data-results hidden aria-live="polite">
+            <div><strong data-out="bricks">0</strong>bricks, incl. 5% wastage</div>
+            <div><strong data-out="cement-bags">0</strong>bags of cement <em data-out="cement-kg"></em></div>
+            <div><strong data-out="sand">0</strong>m³ of sand <em data-out="sand-cft"></em></div>
+            <div><strong data-out="volume">0</strong>m³ of brickwork <em data-out="area"></em></div>
+          </div>
+
+          <details class="assumptions">
+            <summary>Assumptions</summary>
+            <ul>
+              <li>Brick 240 × 115 × 57 mm with 10 mm joints, so each brick takes 250 × 125 × 67 mm of wall.</li>
+              <li>Wet mortar = wall volume − volume of the bricks themselves.</li>
+              <li>Dry mortar = 1.33 × wet mortar, split by the mortar ratio.</li>
+              <li>Cement density 1440 kg/m³, 50 kg bags. Openings are deducted in full.</li>
+            </ul>
+          </details>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer">
+      <p>© <span data-year>2026</span> Avik Poudel</p>
+      <nav aria-label="Footer">
+        <a href="index.html">Portfolio</a>
+        <a href="hobby.html">Travel</a>
+        <a href="https://github.com/poudelavik1" target="_blank" rel="noopener">GitHub</a>
+        <a href="resources/cv.pdf" download>CV</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/calculators.js" defer></script>
 </body>
 </html>
