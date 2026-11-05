@@ -33,11 +33,19 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Collect site files
+        # Publish only what the pages use; the original full-size photos in
+        # Photos/ and resources/ stay in the repository but are not deployed.
+        run: |
+          mkdir -p _site/resources
+          cp index.html hobby.html concretecal.html favicon.ico _site/
+          cp -r assets _site/
+          cp resources/cv.pdf _site/resources/
+          du -sh _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
